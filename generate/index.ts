@@ -17,6 +17,7 @@ const run = async () => {
   <td><a href="https://github.com/react-native-community/${repo.name}"><pre>${
       repo.name
     }</pre></a></td>
+  <td>${repo.stars ? '' + repo.stars : '0'}</td>
   <td>${repo.features.communityEslint ? '✅' : '❌'}</td>
   <td>${repo.features.mitLicense ? '✅' : '❌'}</td>
   </tr>
@@ -36,6 +37,7 @@ const run = async () => {
   <table>
   <tr>
   <th>Name</th>
+  <th>Stars</th>
   <th>Community ESLint</th>
   <th>MIT Licence</th>
   </tr>
