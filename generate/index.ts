@@ -29,6 +29,7 @@ const run = async () => {
   const html = `
   <html>
   <head>
+  <title>React Native Community</title>
   <meta charset="UTF-8">
   </head>
   <body>
