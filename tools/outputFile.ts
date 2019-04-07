@@ -5,11 +5,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const folderPath = path.join(__dirname, "..", "output");
+const folderPath = path.join(__dirname, '..', 'output');
 
 const filePath = (fileName: string): string => {
   return path.join(folderPath, fileName);
-}
+};
 
 export const load = async (fileName: string): Promise<any> => {
   return new Promise((resolve, reject) => {
@@ -37,10 +37,10 @@ export const save = async (fileName: string, data: any) => {
           } else {
             resolve();
           }
-        })
+        });
       }
-    })
-  })
+    });
+  });
 
   await new Promise((resolve, reject) => {
     fs.writeFile(filePath(fileName), data, err => {

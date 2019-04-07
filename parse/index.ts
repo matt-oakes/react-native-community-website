@@ -59,6 +59,10 @@ const run = async () => {
     'Collect the data into the bits we actually care about successful',
   );
 
+  logger.debug('Sort by the repo name');
+  data.sort((a, b) => a.name.localeCompare(b.name));
+  logger.debug('Sort by the repo name successful');
+
   logger.debug('Saving to parsed.json');
   await outputFile.save('parsed.json', JSON.stringify(data));
   logger.info('Saved to parsed.json');
