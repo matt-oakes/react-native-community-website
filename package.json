@@ -6,14 +6,19 @@
   "scripts": {
     "collect-data": "yarn ts-node collect-data/index.ts",
     "parse-data": "yarn ts-node parse-data/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn validate:lint",
+    "validate:lint": "yarn eslint '**/*.ts'"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@react-native-community/eslint-config": "^0.0.3",
     "@types/node-fetch": "^2.3.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "chalk": "^2.4.2",
+    "eslint": "^5.16.0",
     "node-fetch": "^2.3.0",
+    "prettier": "^1.16.4",
     "ts-node": "^8.0.3",
     "typescript": "^3.4.2"
   }

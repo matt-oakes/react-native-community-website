@@ -1,10 +1,14 @@
-import fetch from "node-fetch";
+/**
+ * @format
+ */
+
+import fetch from 'node-fetch';
 
 export default async function graphqlQuery(after: string | null = null) {
   const query = {
     query: `{
       organization(login: "react-native-community") {
-        repositories(first: 20 ${after ? `after: ${after}` : ""}) {
+        repositories(first: 20 ${after ? `after: ${after}` : ''}) {
           totalCount
           pageInfo {
             endCursor
@@ -34,19 +38,19 @@ export default async function graphqlQuery(after: string | null = null) {
           }
         }
       }
-    }`
+    }`,
   };
 
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
     headers: {
-      Authorization: `bearer ${process.env.GH_TOKEN}`
+      Authorization: `bearer ${process.env.GH_TOKEN}`,
     },
-    body: JSON.stringify(query)
+    body: JSON.stringify(query),
   });
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Got an error from the Github API: ${text}`)
+    throw new Error(`Got an error from the Github API: ${text}`);
   }
 
   return await response.json();

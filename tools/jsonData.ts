@@ -1,4 +1,8 @@
-import fs = require("fs");
+/**
+ * @format
+ */
+
+import fs from 'fs';
 
 export const load = async (filePath: string) => {
   return new Promise((resolve, reject) => {
@@ -6,13 +10,13 @@ export const load = async (filePath: string) => {
       if (err) {
         reject(err);
       } else {
-        const dataString = data.toString("UTF8");
-        const json = JSON.parse(dataString)
+        const dataString = data.toString('UTF8');
+        const json = JSON.parse(dataString);
         resolve(json);
       }
-    })
-  })
-}
+    });
+  });
+};
 
 export const save = async (filePath: string, json: object) => {
   await new Promise((resolve, reject) => {
@@ -22,11 +26,11 @@ export const save = async (filePath: string, json: object) => {
       } else {
         resolve();
       }
-    })
-  })
+    });
+  });
 };
 
 export default {
   load,
-  save
-}
+  save,
+};
