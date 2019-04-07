@@ -1,0 +1,49 @@
+version: 2.1
+
+orbs:
+  yarn: artsy/yarn@1.0.1
+
+jobs:
+  publish:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - yarn/load_dependencies
+      - yarn/install
+      - yarn/save_dependencies
+      - run:
+          command: yarn test
+      - run:
+          command: yarn collect
+      - run:
+          command: yarn parse
+      - run:
+          command: yarn generate
+      - run:
+          command: |
+            git config --global user.email "hello@mattoakes.net"
+            git config --global user.name "Matt Oakes Bot"
+      - run:
+          command: yarn deploy --repo 'https://${GH_TOKEN}@github.com/matt-oakes/react-native-community-website.git'
+
+workflows:
+  version: 2.1
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+       - publish
+  update:
+    jobs:
+      - publish:
+          filters:
+            branches:
+              only:
+                - master
