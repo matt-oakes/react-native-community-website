@@ -26,7 +26,7 @@ jobs:
             git config --global user.email "hello@mattoakes.net"
             git config --global user.name "Matt Oakes Bot"
       - run:
-          command: yarn deploy --repo 'https://${GH_TOKEN}@github.com/matt-oakes/react-native-community-website.git'
+          command: yarn deploy
 
 workflows:
   version: 2.1

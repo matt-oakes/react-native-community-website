@@ -8,7 +8,7 @@
     "collect": "yarn ts-node collect/index.ts",
     "parse": "yarn ts-node parse/index.ts",
     "generate": "yarn ts-node generate/index.ts",
-    "deploy": "gh-pages -d output",
+    "deploy": "yarn ts-node deploy/index.ts",
     "test": "yarn validate:lint",
     "validate:lint": "yarn eslint '**/*.ts'"
   },
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@react-native-community/eslint-config": "^0.0.3",
+    "@types/gh-pages": "^2.0.0",
     "@types/node-fetch": "^2.3.0",
     "@typescript-eslint/parser": "^1.6.0",
     "chalk": "^2.4.2",
