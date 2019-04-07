@@ -2,19 +2,12 @@
  * @format
  */
 
-import path from 'path';
 import logger from '../tools/logger';
-import jsonData from '../tools/jsonData';
+import outputFile from '../tools/outputFile';
 
 const run = async () => {
   logger.debug('Loading previously collected data');
-  const inputFilePath = path.join(
-    __dirname,
-    '..',
-    'collect-data',
-    'collected.json',
-  );
-  let data: any = await jsonData.load(inputFilePath);
+  let data: any = await outputFile.load('collected.json');
   logger.debug('Loading previously collected data successful');
 
   logger.debug('Collapse topics to a simple array');
@@ -67,8 +60,7 @@ const run = async () => {
   );
 
   logger.debug('Saving to parsed.json');
-  const outputFilePath = path.join(__dirname, 'parsed.json');
-  await jsonData.save(outputFilePath, data);
+  await outputFile.save('parsed.json', JSON.stringify(data));
   logger.info('Saved to parsed.json');
 };
 

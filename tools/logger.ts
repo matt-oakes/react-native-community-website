@@ -6,7 +6,7 @@ import chalk from 'chalk';
 
 const SEPARATOR = ', ';
 
-let verbose = false;
+let verbose = !!process.env.VERBOSE_LOGS;
 
 const formatMessages = (messages: Array<string>) =>
   chalk.reset(messages.join(SEPARATOR));

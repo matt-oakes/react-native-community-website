@@ -2,10 +2,9 @@
  * @format
  */
 
-import path from 'path';
 import graphqlQuery from './graphqlQuery';
 import logger from '../tools/logger';
-import jsonData from '../tools/jsonData';
+import outputFile from '../tools/outputFile';
 
 const run = async () => {
   const results = [];
@@ -33,8 +32,7 @@ const run = async () => {
   logger.debug(`Finished fetching ${results.length} results`);
 
   logger.debug('Saving to collected.json');
-  const filePath = path.join(__dirname, 'collected.json');
-  await jsonData.save(filePath, results);
+  await outputFile.save('collected.json', JSON.stringify(results));
   logger.info('Saved to collected.json');
 };
 

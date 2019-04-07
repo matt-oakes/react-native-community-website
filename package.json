@@ -4,8 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "collect-data": "yarn ts-node collect-data/index.ts",
-    "parse-data": "yarn ts-node parse-data/index.ts",
+    "start": "yarn collect && yarn parse && yarn generate",
+    "collect": "yarn ts-node collect/index.ts",
+    "parse": "yarn ts-node parse/index.ts",
+    "generate": "yarn ts-node generate/index.ts",
     "test": "yarn validate:lint",
     "validate:lint": "yarn eslint '**/*.ts'"
   },

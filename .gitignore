@@ -2,8 +2,7 @@
 # PROJECT
 #
 
-collect-data/collected.json
-parse-data/parsed.json
+output/
 
 #
 # NODE
