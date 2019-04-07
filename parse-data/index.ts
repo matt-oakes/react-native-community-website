@@ -32,14 +32,22 @@ const run = async () => {
   })
   logger.debug("Parsing the package.json contents successful")
 
-  logger.debug("Collapse stargazers to a simple number")
+  logger.debug("Collect the data into the bits we actually care about")
   data = data.map(repo => {
+    const hasCommunityEslint = !!(repo.packagejson && repo.packagejson.devDependencies && repo.packagejson.devDependencies["@react-native-community/eslint-config"])
+    const usesMitLicense = !!(repo.licenseInfo && repo.licenseInfo.key === "mit")
+
     return {
-      ...repo,
-      stargazers: repo.stargazers.totalCount
+      name: repo.name,
+      topics: repo.repositoryTopics,
+      stars: repo.stargazers.totalCount,
+      features: {
+        communityEslint: hasCommunityEslint,
+        mitLicense: usesMitLicense
+      }
     }
   })
-  logger.debug("Collapse stargazers to a simple number successful")
+  logger.debug("Collect the data into the bits we actually care about successful")
 
   logger.debug("Saving to parsed.json")
   const outputFilePath = path.join(__dirname, "parsed.json")

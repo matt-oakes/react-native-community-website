@@ -13,6 +13,9 @@ export default async function graphqlQuery(after: string | null = null) {
           nodes {
             id
             name
+            licenseInfo {
+              key
+            }
             repositoryTopics(first: 100) {
               nodes {
                 topic {
