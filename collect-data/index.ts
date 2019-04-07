@@ -1,7 +1,7 @@
-import fs = require("fs");
 import path = require("path");
 import graphqlQuery from "./graphqlQuery";
 import logger from "../tools/logger"
+import jsonData from "../tools/jsonData";
 
 const run = async () => {
   const results = [];
@@ -22,19 +22,12 @@ const run = async () => {
     logger.debug(`Got page with ${repositories.nodes.length} new items endCursor ${endCursor}`)
   } while (endCursor != null)
 
-  logger.info(`Finished fetching ${results.length} results`)
+  logger.debug(`Finished fetching ${results.length} results`)
 
   logger.debug("Saving to collected.json")
-  await new Promise((resolve, reject) => {
-    fs.writeFile(path.join(__dirname, "collected.json"), JSON.stringify(results), err => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    })
-  })
-  logger.debug("Saved to collected.json")
+  const filePath = path.join(__dirname, "collected.json")
+  await jsonData.save(filePath, results);
+  logger.info("Saved to collected.json")
 };
 
 run();

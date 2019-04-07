@@ -3,6 +3,7 @@
 #
 
 collect-data/collected.json
+parse-data/parsed.json
 
 #
 # NODE
